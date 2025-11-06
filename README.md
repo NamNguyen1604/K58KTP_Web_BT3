@@ -39,3 +39,7 @@ BƯỚC 4: Lập Trình Backend (Node-RED & CSDL)
   Truy cập http://phuongnam.com/nodered/ $\rightarrow$ Manage palette $\rightarrow$ Install.
   Cài đặt: node-red-contrib-influxdb và node-red-contrib-mysql
 
+
+  <img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/f2f7cdc1-ff21-487e-acb6-b9c415585fbb" />
+
+

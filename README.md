@@ -28,6 +28,7 @@ BƯỚC 5: Cấu Hình Tên Miền (File Hosts)
 Mở file: C:\Windows\System32\drivers\etc\hosts.
 Thêm dòng sau vào cuối file:127.0.0.1   phuongnam.com xong lưu lại.
 <img width="938" height="853" alt="image" src="https://github.com/user-attachments/assets/2a8feadf-b5cc-48c3-9a7a-938458af4685" />
+
 BƯỚC 4: Lập Trình Backend (Node-RED & CSDL)
 1. Cấu hình CSDL (MariaDB & InfluxDB)
 - MariaDB: http://localhost:8080
@@ -35,11 +36,21 @@ BƯỚC 4: Lập Trình Backend (Node-RED & CSDL)
 <img width="1024" height="576" alt="image" src="https://github.com/user-attachments/assets/01766da7-9e4d-4c7a-b011-22bc5e3aade5" />
 - InfluxDB:http://localhost:8086
 <img width="1135" height="616" alt="image" src="https://github.com/user-attachments/assets/5977d6fa-eb75-4aeb-805d-ef36657a2099" />
+<img width="1818" height="909" alt="image" src="https://github.com/user-attachments/assets/45a3c14e-bde0-4542-b8b7-17472e67c087" />
+
 2. Cài đặt Node-RED Modules
   Truy cập http://phuongnam.com/nodered/ $\rightarrow$ Manage palette $\rightarrow$ Install.
   Cài đặt: node-red-contrib-influxdb và node-red-contrib-mysql
 
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/1674805d-4ce3-4ae2-ae50-0773b2f5daaa" />
+<img width="1296" height="439" alt="image" src="https://github.com/user-attachments/assets/bc4a58e7-ed38-422a-9681-c4c35eea4385" />
 
+<img width="968" height="255" alt="image" src="https://github.com/user-attachments/assets/c7e3cb8d-7105-4922-946b-439a5e54f7a9" />
+3. Cấu hình Granada :
+   Hiện tại đang lỗi :
+   ![Uploading image.png…]()
+
+web  :  http://phuongnam.com/
   <img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/f2f7cdc1-ff21-487e-acb6-b9c415585fbb" />
 
 

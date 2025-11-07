@@ -48,9 +48,10 @@ BƯỚC 4: Lập Trình Backend (Node-RED & CSDL)
 <img width="968" height="255" alt="image" src="https://github.com/user-attachments/assets/c7e3cb8d-7105-4922-946b-439a5e54f7a9" />
 3. Cấu hình Granada :
    Hiện tại đang lỗi :
-   ![Uploading image.png…]()
+   <img width="898" height="910" alt="image" src="https://github.com/user-attachments/assets/0121b2fc-2e97-4a0c-96b0-43d59881fb51" />
 
 web  :  http://phuongnam.com/
   <img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/f2f7cdc1-ff21-487e-acb6-b9c415585fbb" />
+![Uploading image.png…]()
 
 

@@ -1,0 +1,96 @@
+version: '3.8'
+
+services:
+
+  # 1. Cơ sở dữ liệu MariaDB
+  mariadb:
+    image: mariadb:10.6
+    container_name: my-mariadb
+    restart: always
+    environment:
+      MARIADB_ROOT_PASSWORD: 123456
+      MARIADB_DATABASE: my_app_db
+      MARIADB_USER: my_app_user
+      MARIADB_PASSWORD: 123456
+    ports: ["3306:3306"]
+    volumes: [mariadb-data:/var/lib/mysql]
+    networks: [my-app-network]
+
+  # 2. Giao diện PhpMyAdmin
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: my-phpmyadmin
+    restart: always
+    ports: ["8080:80"]
+    environment:
+      PMA_HOST: mariadb
+      MYSQL_ROOT_PASSWORD: 123456
+    depends_on: [mariadb]
+    networks: [my-app-network]
+
+  # 3. Backend Node-RED (Đã SỬA LỖI "Cannot GET /nodered/")
+  nodered:
+    image: nodered/node-red:latest
+    container_name: my-nodered
+    restart: always
+    ports: ["1880:1880"]
+    environment:
+      - NODE_RED_HTTP_ADMIN_ROOT=/nodered
+      - NODE_RED_HTTP_NODE_ROOT=/nodered
+    volumes: 
+      - nodered-data:/data
+    networks: [my-app-network]
+
+  # 4. CSDL InfluxDB
+  influxdb:
+    image: influxdb:2.7
+    container_name: my-influxdb
+    restart: always
+    ports: ["8086:8086"]
+    volumes: [influxdb-data:/var/lib/influxdb2]
+    networks: [my-app-network]
+
+  # 5. Biểu đồ Grafana (ĐÃ FIX LỖI IFRAME)
+  grafana:
+    image: grafana/grafana:latest
+    container_name: my-grafana
+    restart: always
+    environment:
+      - GF_SERVER_ROOT_URL=%(protocol)s://%(domain)s:%(http_port)s/grafana
+      - GF_SERVER_SERVE_FROM_SUB_PATH=true
+      - GF_SECURITY_ALLOW_EMBEDDING=true  # <-- DÒNG MỚI: CHO PHÉP NHÚNG IFRAME
+    ports: ["3000:3000"]
+    volumes: [grafana-data:/var/lib/grafana]
+    networks: [my-app-network]
+
+  # 6. Web Server Nginx
+  nginx:
+    image: nginx:latest
+    container_name: my-nginx
+    restart: always
+    ports: ["80:80", "443:443"]
+    volumes:
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf 
+      - ./frontend:/usr/share/nginx/html 
+    depends_on: [nodered, grafana]
+    networks: [my-app-network]
+
+  # 7. MQTT Broker
+  mosquitto:
+    image: eclipse-mosquitto:latest
+    container_name: my-mosquitto
+    restart: always
+    ports: ["1883:1883"]
+    volumes:
+      - ./mosquitto/config/mosquitto.conf:/mosquitto/config/mosquitto.conf
+    networks: [my-app-network]
+
+volumes:
+  mariadb-data:
+  nodered-data: 
+  influxdb-data:
+  grafana-data:
+
+networks:
+  my-app-network:
+    driver: bridge
